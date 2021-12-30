@@ -60,3 +60,32 @@ class User {
 }
 
 //내일은 변수 문법 공부하기
+
+//변수만들기 변수에 타입지정가능 변수명: 타입명
+//변수에 타입지정 = 변수에 실드 씌우는 것이다. ex) myName 변수에 string이라는 실드를 씌우는것이다. 해당 변수는 string type만 가능하다
+let myName: string = "hyo0";
+let age: number = 20;
+let isMerried: boolean = false;
+
+//변수 하나에 여러자료 집어넣고 싶으면 array 자료형을 쓰자 배열안에 들어갈 타입을 지정해야한다.
+let members: string[] = ["hyo0", "su"];
+
+//obj
+let memberObj: { member1: string; member2: string } = {
+  member1: "hyo0",
+  member2: "su",
+};
+let likeSong: { singer: string; song: string } = {
+  singer: "Lauv",
+  song: "I Like Me Better",
+};
+
+//type 지정해보기
+let project: { member: string[]; days: number; started: boolean } = {
+  member: ["hyo0", "su"],
+  days: 14,
+  started: true,
+};
+
+//TIP!! typeScript는 자동으로 타입지정이 된다. 타입지정 문법 생략가능
+let numArr = [1, 2, 3];
