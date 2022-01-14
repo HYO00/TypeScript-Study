@@ -58,3 +58,81 @@ var project = {
 };
 //TIP!! typeScript는 자동으로 타입지정이 된다. 타입지정 문법 생략가능
 var numArr = [1, 2, 3];
+var user = {
+    name: "hyo",
+    age: 20,
+    birthYear: 2000,
+    1: "A",
+    2: "B",
+};
+user.age = 10;
+user.gender = "male";
+var add = function (x, y) {
+    return x + y;
+};
+var a = function (age) {
+    return age > 19;
+};
+a(22);
+var benz = {
+    door: 5,
+    stop: function () {
+        console.log("stop!");
+    },
+    color: "grey",
+    wheels: 4,
+    start: function () { },
+};
+var Bmw = /** @class */ (function () {
+    function Bmw(c) {
+        this.wheels = 4;
+        this.color = c;
+    }
+    Bmw.prototype.start = function () {
+        console.log("Go!");
+    };
+    return Bmw;
+}());
+var b = new Bmw("green");
+//함수
+function isAdult(age) {
+    return age > 19;
+}
+function hello(name, age) {
+    if (age !== undefined) {
+        return "hello, ".concat(name, ". You are ").concat(age, ".");
+    }
+    else {
+        return "Hello. ".concat(name);
+    }
+}
+//name에 물음표를 붙여주면 아래코드 가능
+//const result = hello();
+//...사용시 전달받은 매개변수 배열로 나타낼수있다.
+function sum() {
+    var nums = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        nums[_i] = arguments[_i];
+    }
+    return nums.reduce(function (acc, cur) { return acc + cur; }, 0);
+}
+sum(1, 2, 3);
+var Sam = { name: "Sam" }; //Sam이라는 객체는 person 타입이고
+function showName() {
+    console.log(this.name);
+}
+var nameBind = showName.bind(Sam);
+nameBind();
+function join(name, age) {
+    if (typeof age === "number") {
+        return {
+            name: name,
+            age: age,
+        };
+    }
+    else {
+        return "나이는 숫자로 입력해주세요.";
+    }
+}
+var sam = join("Sam", 30);
+var jane = join("Jane", "30");

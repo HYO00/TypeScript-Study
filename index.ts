@@ -89,3 +89,142 @@ let project: { member: string[]; days: number; started: boolean } = {
 
 //TIP!! typeScript는 자동으로 타입지정이 된다. 타입지정 문법 생략가능
 let numArr = [1, 2, 3];
+
+//interface
+type Score = "A" | "B" | "C" | "D";
+
+interface User {
+  name: string;
+  age: number;
+  gender?: string;
+  //readOnly property
+  readonly birthYear: number;
+  [grade: number]: Score; //number을 key로 하고 string을 value로 하는
+}
+
+let user: User = {
+  name: "hyo",
+  age: 20,
+  birthYear: 2000,
+  1: "A",
+  2: "B",
+};
+
+user.age = 10;
+user.gender = "male";
+
+interface Add {
+  (num1: number, num2: number): number;
+}
+
+const add: Add = function (x, y) {
+  return x + y;
+};
+
+interface IsAdult {
+  (age: number): boolean;
+}
+
+const a: IsAdult = (age) => {
+  return age > 19;
+};
+
+a(22);
+
+interface Car {
+  color: string;
+  wheels: number;
+  start(): void;
+}
+
+interface Toy {
+  name: string;
+}
+//2개를 합쳐 확장 가능
+interface ToyCar extends Car, Toy {
+  price: number;
+}
+
+//interface는 확장이 가능  extends
+interface Benz extends Car {
+  door: number;
+  stop(): void;
+}
+
+const benz: Benz = {
+  door: 5,
+  stop() {
+    console.log("stop!");
+  },
+  color: "grey",
+  wheels: 4,
+  start() {},
+};
+
+class Bmw implements Car {
+  color;
+  wheels = 4;
+  constructor(c: string) {
+    this.color = c;
+  }
+  start() {
+    console.log("Go!");
+  }
+}
+
+const b = new Bmw("green");
+
+//함수
+function isAdult(age: number): boolean {
+  return age > 19;
+}
+
+function hello(name: string, age?: number): string {
+  if (age !== undefined) {
+    return `hello, ${name}. You are ${age}.`;
+  } else {
+    return `Hello. ${name}`;
+  }
+}
+//name에 물음표를 붙여주면 아래코드 가능
+//const result = hello();
+
+//...사용시 전달받은 매개변수 배열로 나타낼수있다.
+function sum(...nums: number[]) {
+  return nums.reduce((acc, cur) => acc + cur, 0);
+}
+sum(1, 2, 3);
+
+interface Person {
+  name: string;
+}
+
+const Sam: Person = { name: "Sam" }; //Sam이라는 객체는 person 타입이고
+
+function showName(this: Person) {
+  console.log(this.name);
+}
+
+const nameBind = showName.bind(Sam);
+nameBind();
+
+interface SomeOne {
+  name: string;
+  age: number;
+}
+
+function join(name: string, age: string): string;
+function join(name: string, age: number): SomeOne;
+function join(name: string, age: number | string): SomeOne | string {
+  if (typeof age === "number") {
+    return {
+      name,
+      age,
+    };
+  } else {
+    return "나이는 숫자로 입력해주세요.";
+  }
+}
+
+const sam: SomeOne = join("Sam", 30);
+const jane: string = join("Jane", "30");
