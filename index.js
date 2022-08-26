@@ -1,15 +1,15 @@
 //간단한 변수 타입지정가능
-var names = "kim";
+let names = "kim";
 //array 타입 지정
-var nameArr = ["kim", "park"];
+let nameArr = ["kim", "park"];
 //object 타입 지정
 //name? 물음표는 name속성이 옵션임을 표현
-var nameObj = { name: "kim" };
+let nameObj = { name: "kim" };
 //다양한 타입이 들어올 수 있게 하려면 Union type
 // :string[] 문자열이 가득담긴 배열 가능
-var hyo = "kim";
-var young = 0;
-var 이름 = "kim";
+let hyo = "kim";
+let young = 0;
+let 이름 = "kim";
 //함수 만들때도 타입지정 가능 파라미터와 return 값이 어떤 타입일지 지정가능 wow..
 function funcName(x) {
     return x * 2;
@@ -24,41 +24,40 @@ function funcName2(x) {
         return x * 2;
     }
 }
-var su = [100, false];
-var haydee = { name: "kim", age: "20" };
+let su = [100, false];
+let haydee = { name: "kim", age: "20" };
 //class 타입지정 가능
-var User = /** @class */ (function () {
-    function User(name) {
+class User {
+    constructor(name) {
         this.name = name;
     }
-    return User;
-}());
+}
 //내일은 변수 문법 공부하기
 //변수만들기 변수에 타입지정가능 변수명: 타입명
 //변수에 타입지정 = 변수에 실드 씌우는 것이다. ex) myName 변수에 string이라는 실드를 씌우는것이다. 해당 변수는 string type만 가능하다
-var myName = "hyo0";
-var age = 20;
-var isMerried = false;
+let myName = "hyo0";
+let age = 20;
+let isMerried = false;
 //변수 하나에 여러자료 집어넣고 싶으면 array 자료형을 쓰자 배열안에 들어갈 타입을 지정해야한다.
-var members = ["hyo0", "su"];
+let members = ["hyo0", "su"];
 //obj
-var memberObj = {
+let memberObj = {
     member1: "hyo0",
     member2: "su",
 };
-var likeSong = {
+let likeSong = {
     singer: "Lauv",
     song: "I Like Me Better",
 };
 //type 지정해보기
-var project = {
+let project = {
     member: ["hyo0", "su"],
     days: 14,
     started: true,
 };
 //TIP!! typeScript는 자동으로 타입지정이 된다. 타입지정 문법 생략가능
-var numArr = [1, 2, 3];
-var user = {
+let numArr = [1, 2, 3];
+let user = {
     name: "hyo",
     age: 20,
     birthYear: 2000,
@@ -67,72 +66,67 @@ var user = {
 };
 user.age = 10;
 user.gender = "male";
-var add = function (x, y) {
+const add = function (x, y) {
     return x + y;
 };
-var a = function (age) {
+const a = (age) => {
     return age > 19;
 };
 a(22);
-var benz = {
+const benz = {
     door: 5,
-    stop: function () {
+    stop() {
         console.log("stop!");
     },
     color: "grey",
     wheels: 4,
-    start: function () { },
+    start() { },
 };
-var Bmw = /** @class */ (function () {
-    function Bmw(c) {
+class Bmw {
+    constructor(c) {
         this.wheels = 4;
         this.color = c;
     }
-    Bmw.prototype.start = function () {
+    start() {
         console.log("Go!");
-    };
-    return Bmw;
-}());
-var b = new Bmw("green");
+    }
+}
+const b = new Bmw("green");
 //함수
 function isAdult(age) {
     return age > 19;
 }
 function hello(name, age) {
     if (age !== undefined) {
-        return "hello, ".concat(name, ". You are ").concat(age, ".");
+        return `hello, ${name}. You are ${age}.`;
     }
     else {
-        return "Hello. ".concat(name);
+        return `Hello. ${name}`;
     }
 }
 //name에 물음표를 붙여주면 아래코드 가능
 //const result = hello();
 //...사용시 전달받은 매개변수 배열로 나타낼수있다.
-function sum() {
-    var nums = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        nums[_i] = arguments[_i];
-    }
-    return nums.reduce(function (acc, cur) { return acc + cur; }, 0);
+function sum(...nums) {
+    return nums.reduce((acc, cur) => acc + cur, 0);
 }
 sum(1, 2, 3);
-var Sam = { name: "Sam" }; //Sam이라는 객체는 person 타입이고
+const Sam = { name: "Sam" }; //Sam이라는 객체는 person 타입이고
 function showName() {
     console.log(this.name);
 }
-var nameBind = showName.bind(Sam);
+const nameBind = showName.bind(Sam);
 nameBind();
 function join(name, age) {
     if (typeof age === "number") {
         return {
-            name: name,
-            age: age,
+            name,
+            age,
         };
     }
     else {
         return "나이는 숫자로 입력해주세요.";
     }
 }
-var sam = join("Sam", 30);
-var jane = join("Jane", "30");
+const sam = join("Sam", 30);
+const jane = join("Jane", "30");
